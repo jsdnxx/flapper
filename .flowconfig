@@ -1,0 +1,9 @@
+[ignore]
+.*\.json
+
+[include]
+
+[libs]
+flow-typed
+
+[options]
