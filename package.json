@@ -4,12 +4,13 @@
   "description": "flow automatic property prover",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf obj*/*.js && mkdir -p obj/fixtures && cp src/fixtures/*.json obj/fixtures",
     "test": "npm run lint && npm run test:build && npm run test:run",
-    "test:run": "mocha obj/**/*.test.js",
-    "test:build": "babel src --out-dir obj --retain-lines && mkdir -p obj/fixtures && cp src/fixtures/*.json obj/fixtures",
+    "test:run": "mocha obj*/*test.js",
+    "test:build": "npm run clean && babel src --out-dir obj --retain-lines",
     "test:watch": "npm run test:watch:build & npm run test:watch:run",
     "test:watch:build": "babel src --out-dir obj --watch --retain-lines",
-    "test:watch:run": "mocha obj/**/*.test.js --watch",
+    "test:watch:run": "mocha obj*/*test.js --watch",
     "lint": "npm run lint:flow && npm run lint:standard",
     "lint:flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lint:standard": "standard"
